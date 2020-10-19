@@ -4,6 +4,7 @@ public/
 logs/
 .cache
 .DS_Store
+.vscode/
 
 # Logs
 logs

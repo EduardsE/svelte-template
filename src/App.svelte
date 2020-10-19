@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import About from "./About.svelte";
   import Blog from "./Blog.svelte";
   import BlogPost from "./BlogPost.svelte";
