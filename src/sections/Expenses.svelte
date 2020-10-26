@@ -1,41 +1,20 @@
 <script lang="ts">
   import { format } from "date-fns";
 
-  import { Category } from "../constants/Category";
   import Button from "./../components/Button.svelte";
 
+  import { open } from "./../stores/addTransaction";
+  import { transactions } from "./../stores/transactions";
+
   // https://tailwindcomponents.com/component/table-responsive-with-filters
-
-  const expenses = [
-    {
-      date: new Date(),
-      title: "Volejbols",
-      category: Category.FITNESS,
-      amount: 40,
-    },
-    {
-      date: new Date(),
-      title: "Viskijs Bushmill 20 gadus noturēts",
-      category: Category.ALCOHOL,
-      amount: 20.99,
-    },
-    {
-      date: new Date(),
-      title: "Bikses",
-      category: Category.CLOTHES,
-      amount: 40,
-    },
-  ];
-
   const columns = ["Date", "Amount", "Title", "Category"];
-  export let toggleUpsert;
 </script>
 
 <div class="container mx-auto px-4">
   <div class="py-8">
     <div class="flex justify-between">
       <h2 class="text-2xl font-semibold leading-tight">Expenses</h2>
-      <Button on:click={toggleUpsert}>Add</Button>
+      <Button on:click={() => open.set(true)}>Add</Button>
     </div>
     <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
       <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -51,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-            {#each expenses as expense}
+            {#each $transactions as expense}
               <tr>
                 <td class="p-3 bg-white text-sm">
                   <div class="flex items-center">
